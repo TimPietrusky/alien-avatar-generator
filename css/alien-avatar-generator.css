@@ -1,29 +1,55 @@
 @import url(http://fonts.googleapis.com/css?family=Squada+One);
 
-body {
-  margin:1em 0;
+@font-face {
+  font-family: 'icons';
+  src: url("../font/icons.eot");
+  src: url("../font/icons.eot?#iefix") format('embedded-opentype'), url("../font/icons.woff") format('woff'), url("../font/icons.ttf") format('truetype'), url("../font/icons.svg#icons") format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-	margin: 5px auto;
-	padding: 0;
-  background: #222;
-  color:#000;
-  float:left;
-  font: 40px bold 'Squada One', cursive;
+  box-sizing:border-box;
 }
 
-canvas {
-  box-shadow:0 0 1em rgba(0,0,0,.5);
+html,
+body {
+  height:100%;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+body {
+  background: #222;
+  background: url(../img/low_contrast_linen.png);
+  color:#ccc;
+  font: 1.3em/1.6em sans-serif;
+}
+
+a {
+  color:#fff;
+  text-decoration:none;
+  display:inline-block;
+
+  padding: 0 0 .15em 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  transition:all .25s ease-in-out;
+}
+
+a:active {
+  transform: scale(.85);
+}
+
+a:hover {
+  transform: scale(.85);
+  border-bottom: 1px solid rgba(255, 255, 255, .7);
 }
 
 h1 {
-  font-size:1.4em;
-  margin-right:20px;
-  padding:0 20px;
-  width:300px;
-  text-align:center;
-  color: #111;
+  font: 3em 'Squada One', cursive;
+  color:#111;
+  margin:.5em 0;
   text-shadow: 
     0 0 10px rgba(200,200,200,.3),
     0 0 45px rgba(200,200,200,.2),
@@ -32,73 +58,141 @@ h1 {
     0 2px 2px #333;
 }
 
-h1.download {
-  opacity:0;
+h2 {
+  font-size:2.15em;
+  margin:.75em 0;
+  letter-spacing:.05em;
+  text-shadow: 
+    0 0 10px rgba(0, 0, 0, .3),
+    0 0 45px rgba(0, 0, 0, .2);
+}
+
+canvas {
+  display:none;
+}
+
+section,
+footer {
+  position:relative;
+  padding:1em 3em;
+}
+
+section:before {
+  content:attr(data-icon);
+  position:absolute;
+  text-align: right;
+  z-index:-1;
+  right:.5em;
+  top:.1em;
+  font: 10em 'icons';
+  color: rgba(255, 255, 255, .2);
+  text-shadow:0 0 2px (0, 0, 0, .6);
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+section[role="highlight"] {
+  padding:2em 3em;
+  background:rgba(30, 30, 30, .7);
+  box-shadow:inset 0 0 .55em rgba(0, 0, 0, .7);
+}
+
+section[role="info"] {
+  margin:.5em 0;
+  border-bottom:1em solid rgba(255, 255, 255, .05);
+}
+
+p {
+  background:rgba(0, 0, 0, .3);
+  box-shadow:0 0 .2em .1em rgba(0, 0, 0, .5);
+  padding:2em .75em;
+  /*margin: 0 10em 0 0;*/
+}
+
+.alien-avatar {
+  float:left;
+  box-shadow:0 0 1em rgba(0, 0, 0, .5);
+  transition:all .5s ease-in-out;
+  animation: flash .45s 1 ease-in-out -.125s;
+  margin:0 1em 1em 0;
+}
+
+@keyframes flash {
+  0% {
+    transform:scale(.2);
+    opacity:.1;
+  }
+  50% {
+    box-shadow:
+      0 0 1em rgba(0, 0, 0, .5),
+      0 0 4em rgba(160, 160, 160, .8)
+    ;
+  }
+  100% {
+    transform:scale(1);
+    box-shadow:
+      0 0 1em rgba(0, 0, 0, .5),
+      0 0 2em rgba(0, 0, 0, .8)
+    ;
+    opacity:1;
+  }
 }
 
 nav {
-  position:absolute;
-  right:0;
-  top:0;
-  font-size:15px;
-  background:none;
-  padding:1em 0;
+  float:left;
 }
 
-/**
- * Button by Joshua Hibbert
- * http://codepen.io/joshnh/details/32/2
- */
+
 button {
-    background-color: #999;
-    background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,0%,.1));
-    border: none;
-    border-radius: .5em;
-    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.25),
-                inset 0 2px 0 hsla(0,0%,100%,.1),
-                inset 0 1.2em 0 hsla(0,0%,100%,.1),
-                inset 0 -.2em 0 hsla(0,0%,100%,.1),
-                inset 0 -.25em 0 hsla(0,0%,0%,.5),
-                0 .25em .25em hsla(0,0%,0%,.1);
-    color: #333;
-    cursor: pointer;
-    display: inline-block;
-    font-family: sans-serif;
-    font-size: 1em;
-    font-weight: bold;
-    line-height: 1.5;
-    margin: 0 .5em 1em;
-    padding: .5em 1.5em .75em;
-    position: relative;
-    text-decoration: none;
-    text-shadow: 0 1px 1px hsla(0,0%,100%,.25);
-    vertical-align: middle;
+  font-size:2em;
+
+  background-color: rgba(100, 100, 100, .5);
+  border: none;
+  box-shadow: 
+              0 0 1em rgba(0, 0, 0, .5),
+              inset 0 -.2em 0 hsla(0,0%,100%,.1),
+              inset 0 -.25em 0 hsla(0,0%,0%,.5),
+              0 .25em .25em hsla(0,0%,0%,.1);
+  color: #222;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: .5em 1.5em .75em;
+  text-decoration: none;
+  text-shadow: 0 1px 1px hsla(0,0%,100%,.25);
+  vertical-align: middle;
+
+  transition: all .25s ease-in-out;
 }
 
 button:hover {
-    outline: none;
+  outline: none;
 }
 
 button:hover,
 button:focus {
-    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.25),
-                inset 0 2px 0 hsla(0,0%,100%,.1),
-                inset 0 1.2em 0 hsla(0,0%,100%,.1),
-                inset 0 -.2em 0 hsla(0,0%,100%,.1),
-                inset 0 -.25em 0 hsla(0,0%,0%,.5),
-                inset 0 0 0 3em hsla(0,0%,100%,.2),
-                0 .25em .25em hsla(0,0%,0%,.1);
+  box-shadow: 0 0 1em rgba(0, 0, 0, .5),
+              inset 0 -.2em 0 hsla(0,0%,100%,.1),
+              inset 0 -.25em 0 hsla(0,0%,0%,.5),
+              inset 0 0 0 3em hsla(0,0%,100%,.2),
+              0 .25em .25em hsla(0,0%,0%,.1);
 }
 
 button:active {
-    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.25),
-                inset 0 2px 0 hsla(0,0%,100%,.1),
-                inset 0 1.2em 0 hsla(0,0%,100%,.1),
-                inset 0 0 0 3em hsla(0,0%,100%,.2),
-                inset 0 .25em .5em hsla(0,0%,0%,.05),
-                0 -1px 1px hsla(0,0%,0%,.1),
-                0 1px 1px hsla(0,0%,100%,.25);
-    margin-top: .25em;
-    outline: none;
-    padding-bottom: .5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, .5),
+              inset 0 0 0 3em hsla(0,0%,100%,.2),
+              inset 0 .25em .5em hsla(0,0%,0%,.05),
+              0 -1px 1px hsla(0,0%,0%,.1),
+              0 1px 1px hsla(0,0%,100%,.25);
+  margin-top: .25em;
+  outline: none;
+  padding-bottom: .5em;
+}
+
+footer {
+  margin:5em 0 0 0;
 }
