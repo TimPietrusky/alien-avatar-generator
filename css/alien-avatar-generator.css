@@ -60,7 +60,8 @@ h1 {
 
 h2 {
   font-size:2.15em;
-  margin:.75em 0;
+  line-height:1.15em;
+  margin:.25em 0;
   letter-spacing:.05em;
   text-shadow: 
     0 0 10px rgba(0, 0, 0, .3),
@@ -96,7 +97,8 @@ section:after {
 }
 
 section[role="highlight"] {
-  padding:2em 3em;
+  padding-top:2em;
+  padding-bottom:2em;
   background:rgba(30, 30, 30, .7);
   box-shadow:inset 0 0 .55em rgba(0, 0, 0, .7);
 }
@@ -109,8 +111,7 @@ section[role="info"] {
 p {
   background:rgba(0, 0, 0, .3);
   box-shadow:0 0 .2em .1em rgba(0, 0, 0, .5);
-  padding:2em .75em;
-  /*margin: 0 10em 0 0;*/
+  padding:1.25em .75em;
 }
 
 .alien-avatar {
@@ -139,6 +140,20 @@ p {
       0 0 2em rgba(0, 0, 0, .8)
     ;
     opacity:1;
+  }
+}
+
+.goaway {
+  position:absolute;
+  left:0em;
+  animation: goaway .425s 1 ease-out;
+}
+
+@keyframes goaway {
+  0% {}
+  100% {
+    opacity:0;
+    transform:translate(5em, -20em) rotateY(90deg) scale(.2);
   }
 }
 
@@ -194,5 +209,39 @@ button:active {
 }
 
 footer {
-  margin:5em 0 0 0;
+  margin:2em 0 0 0;
+}
+
+/* Equal width 2 columns */
+.col-group > section {
+  margin-bottom: 1em;
+}
+
+/* big screens */
+@media screen and (min-width: 44em) {
+  .col-group {
+    overflow: hidden;
+    border-bottom:1em solid rgba(255, 255, 255, .05);
+  }
+  .col-group > section {
+    float: left;
+    width: 50%;
+    border:none;
+  }
+}
+
+/* small screens */
+@media screen and (max-width: 44em) {
+  section,
+  footer {
+    padding:1em;
+  }
+
+  .alien-avatar {
+    margin:1em;
+  }
+
+  .goaway {
+    left:1em;
+  }
 }

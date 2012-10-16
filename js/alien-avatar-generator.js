@@ -70,14 +70,24 @@ Canvas = {
   },
 
   toImg : function() {
-    var img_src = this.el.dom.toDataURL("image/png");
-    var newone = this.el.img.clone(true);
+    var img_src = this.el.dom.toDataURL("image/png"),
+        old_img = this.el.img,
+        new_img = this.el.img.clone(true);
 
-    this.el.img.before(newone);
-    this.el.img.remove();
+    this.el.img.before(new_img);
 
-    this.el.img = $(newone);
+    // Warp up old img only if there is a old img
+    if (old_img.attr('src') != undefined) {
+      old_img.addClass('goaway');
 
+      setTimeout(function() {
+        old_img.remove();
+      }, 400);
+    } else {
+      old_img.remove();
+    }
+
+    this.el.img = $(new_img);
     this.el.img.attr('src', img_src);
   }
 }
